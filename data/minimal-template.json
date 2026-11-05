@@ -1,0 +1,22 @@
+{
+  "format":"learning-tech-tree/v1",
+  "id":"minimal-template",
+  "title":"你的学习科技树",
+  "subtitle":"任意学科 · 自定义阶段 · 自定义目标",
+  "description":"把本模板交给Codex，填写你的学科、起点、目标和实际学制。",
+  "version":"1.0",
+  "language":"zh-CN",
+  "education":{"path":"custom","duration":null,"note":"Replace stages and milestones to match the learner; do not assume fixed years."},
+  "stages":["起点","能力发展","目标完成"],
+  "branches":[{"id":"learning","label":"学习主线","en":"LEARNING","color":"#83b6df"}],
+  "sources":[{"id":"design","title":"Illustrative template","url":"","scope":"Replace with subject-specific evidence and educational design notes."}],
+  "startId":"start",
+  "endId":"finish",
+  "nodes":[
+    {"id":"start","name":"明确起点与目标","branch":"learning","stage":0,"kind":"milestone","prereqIds":[],"relatedIds":[],"description":"记录已有基础、想解决的问题和目标，不预设学科或学制。","outcome":"写出一页学习背景与目标。","caution":"这是模板，不是具体学科课程表。","sourceIds":["design"]},
+    {"id":"learn","name":"掌握一项关键基础","branch":"learning","stage":1,"kind":"core","prereqIds":["start"],"relatedIds":[],"description":"替换成支持目标的真实能力，写清范围及必要先修。","outcome":"用一个可复查的小任务证明理解。","caution":"不要把所有推荐背景设为硬性前置。","sourceIds":["design"]},
+    {"id":"apply","name":"形成可验证产物","branch":"learning","stage":1,"kind":"core","prereqIds":["learn"],"relatedIds":[],"description":"把知识用在与目标相关的作品、实验、证明或实践中。","outcome":"提交一项可审查产物及其局限。","caution":"成果形式随学科与路径改变。","sourceIds":["design"]},
+    {"id":"finish","name":"目标完成与后续安排","branch":"learning","stage":2,"kind":"milestone","prereqIds":["apply"],"relatedIds":[],"description":"按实际目标的验收依据完成总结；若涉及学位，以适用正式制度为准。","outcome":"形成目标—证据—总结对照。","caution":"完成科技树不等同获得学位。","sourceIds":["design"]}
+  ],
+  "applicationEdges":[]
+}

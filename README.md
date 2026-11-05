@@ -1,275 +1,347 @@
-[README.md](https://github.com/user-attachments/files/34417073/README.md)
 # Learning Tech Tree
 
-Turn any learning journey into an interactive tech tree. Map prerequisites, explore connections, and track progress across any subject, skill, or educational path.
+**Turn a learning journey into a technology tree—with foundations to trace, capabilities to develop, and a goal to work toward.**
 
-[中文说明](docs/README.zh-CN.md) · [Create a tree with Codex](docs/create-with-codex.md) · [Data format](docs/data-format.md) · [Customize stages](docs/customization.md)
+Learning Tech Tree is a browser-based viewer, a reusable data format, and a set of Codex authoring guides for creating interactive learning maps. It supports different subjects, starting points, degree paths, and learning goals through editable JSON rather than a fixed curriculum.
+
+**Current version: 0.1.1** · **License: MIT** · **No backend or API key required**
+
+[中文说明](docs/README.zh-CN.md) · [Create a tree with Codex](docs/create-with-codex.md) · [Data format](docs/data-format.md) · [Customization](docs/customization.md) · [Release notes](docs/release-notes.md)
 
 ## Why a learning tech tree?
 
-A course list tells you what exists. A learning tree helps you understand what connects: where a topic comes from, which foundations it genuinely needs, what you can do with it, and how it contributes to a larger goal.
+When studying a complex subject, it is easy to collect courses, books, papers, and tools without seeing how they fit together. A useful learning map should explain more than what to study:
 
-Learning Tech Tree takes inspiration from technology trees in strategy and automation games. Instead of unlocking buildings or machines, you develop capabilities: understanding a concept, completing a proof, building an artifact, running an experiment, or producing a piece of research evidence.
+- Where does a capability come from?
+- Which foundations does it genuinely require?
+- Which related topics are helpful but optional?
+- What task can demonstrate understanding?
+- What can this capability support next?
+- How does it contribute to the larger goal?
 
-The aim is to make a complex journey navigable while keeping its meaning accurate. Different fields need different methods, and different learners follow different programs. The project provides a reusable viewer and authoring format rather than one universal curriculum.
+Inspired by technology trees in strategy and automation games, this project represents capabilities as nodes and their relationships as directed connections. The result is a map that can be explored, questioned, revised, and used to record learning progress.
 
-### Who is it for?
+The subject content is authored separately from the viewer. The same interface can display a focused self-study project, a professional skill pathway, an undergraduate curriculum, or a journey toward independent research.
 
-- **Students** planning undergraduate, master's, doctoral, integrated, or direct-doctoral study.
-- **Independent learners** connecting foundations to a practical or intellectual goal.
-- **Researchers** mapping unfamiliar methods, theoretical dependencies, and evidence-production skills.
-- **Teachers and mentors** preparing a visual roadmap with explicit learning outcomes.
-- **People using Codex** who want a reusable reference for generating a personalized tree without rebuilding the interface for every subject.
+## Who can use it?
 
-You can map a whole educational journey or a bounded topic. A tree can end at a degree-related milestone, a portfolio, a research contribution, a professional project, or another concrete outcome.
-
-## Start here
-
-Download this repository and open **[index.html](index.html)** in a modern browser. No installation, account, API key, server, or internet connection is needed for the included examples. You can also serve the repository with any static server or GitHub Pages.
-
-- [Computer-science doctoral example](examples/computer-science-phd.html): a broad, independently authored map from early foundations through undergraduate knowledge, optional master's-level training, and doctoral research. It is not tied to a fixed number of years.
-- [Minimal customizable example](examples/minimal-template.html): a small starting point for any subject or goal.
-- [Computer-science data](data/computer-science-phd.json) · [Minimal data](data/minimal-template.json)
-
-The current viewer interface and examples use Chinese; the public documentation is available in English and Chinese. Tree titles, stages, node text and sources accept Unicode and can be authored in other languages. Complete viewer-interface localization is not implemented.
-
-## What it does
-
-- Zoom and pan a game-inspired canvas; readable branch headings retain a minimum screen size in the overview.
-- Follow solid **prerequisite** edges and dashed **development/application** edges. Multiple hard prerequisites mean AND; optional applications do not gate completion.
-- Search nodes, focus a branch, inspect all hard prerequisites, or follow one start → selected node → goal route.
-- Read a node's scope, observable outcome, related background, sources, continuation and limitations.
-- Open your own tree JSON directly in the browser, and export its public definition separately from your progress.
-- Save progress and private learning notes per tree ID in the current browser; export and restore a separate progress backup.
-- Build a standalone HTML file from a tree definition using the included dependency-free Node scripts.
-
-### Interaction guide
-
-| Action | How to use it |
+| Learner or author | Possible use |
 |---|---|
-| Explore the map | Drag an empty area to pan; use the mouse wheel or zoom buttons to change scale |
-| Navigate a large tree | Use the minimap, stage buttons, branch filters, or search |
-| Inspect a capability | Select a node to read its scope, outcome, sources, and limitations |
-| Find missing foundations | Select a node and use the prerequisite-path action |
-| Understand its larger purpose | Open the start → selected node → goal representative route |
-| Record understanding | Mark a node as understood and add private evidence or learning notes |
-| Load another subject | Use the example selector or open a compatible local JSON definition |
-| Save the curriculum | Export the tree definition; personal progress is a separate export |
-| Back up learning records | Export progress before changing browser, origin, device, or storage |
+| Undergraduate students | Connect foundations, disciplinary knowledge, specialist options, and capstone work |
+| Master's students | Organize bridge knowledge, advanced topics, research methods, and thesis or professional-project outcomes |
+| Doctoral students | Trace theoretical and methodological dependencies, build research evidence, and plan dissertation milestones |
+| Independent learners | Define an entry point, explore alternative routes, and work toward a concrete personal goal |
+| Researchers entering a new area | Identify unfamiliar foundations and select methods appropriate to a specific problem |
+| Teachers and mentors | Explain a subject's structure and define observable learning outcomes |
+| Codex users | Generate a new subject-specific tree using an existing viewer, schema, and authoring workflow |
 
-Press `/` to focus search. Use `+` and `-` to zoom when you are not editing a text field. `Escape` clears the active route or branch focus when appropriate.
+Subjects may include sciences, engineering, humanities, arts, professional practice, and interdisciplinary fields. Each tree needs content and methods appropriate to its own subject; the included computer-science example is one illustration.
 
-The map uses spacious horizontal columns and distributed connection points to reduce overlapping lines. Branch headings grow when zoomed in and retain a minimum readable screen size in the overview. For very large maps, use the overview for structure and zoom in or search to read individual nodes.
+## Quick start
 
-### Every node should answer useful questions
+### Open the included viewer
 
-1. **What does this capability include?** A defined scope, not only a course title.
-2. **What do I really need first?** Explicit hard prerequisites for that scope.
-3. **What background may help?** Non-gating related knowledge.
-4. **How can I demonstrate understanding?** An observable task or artifact.
-5. **Where can I use it next?** A meaningful continuation or application.
-6. **What supports the content?** Sources and an honest account of their evidential scope.
-7. **What are its limits?** Assumptions, caveats, and conditions that should not be generalized.
+1. Download and extract the repository.
+2. Open **`index.html`** in a modern browser.
+3. Explore the example, select a node, and inspect its learning scope and completion task.
 
-An outcome can be a proof, essay, analysis, design, experiment, implementation, observation record, or another form appropriate to the subject. Programming is not the default outcome for every discipline.
+The generated HTML files contain the viewer and their example data. Opening them locally requires no package installation, account, server, or model API key. Internet access is only needed when you choose to visit external sources or access an online-hosted copy.
 
-## Any subject, any program
+### Choose an example
 
-The viewer has no hard-coded discipline, institution, advisor, degree length or graduation year. Change `stages`, `branches`, `startId`, `endId` and the content in JSON. A stage may mean a year, semester, ability phase, research milestone or self-study level.
+- **[Computer-science doctoral example](examples/computer-science-phd.html):** a broad learning and research map with 155 nodes across 14 branches.
+- **[Minimal customizable example](examples/minimal-template.html):** a four-node starting structure for creating a different subject or goal.
+- **[Computer-science JSON](data/computer-science-phd.json)** and **[minimal JSON](data/minimal-template.json):** editable source definitions.
 
-Bachelor's, master's, doctoral, direct-doctoral, integrated graduate and custom paths are supported by the same format. [Degree-path profiles](templates/degree-paths.json) are editable starting labels, not official curriculum rules. A separate master's degree is not universally required for a doctoral tree.
+GitHub's repository file view displays HTML as source. To run the viewer, open a downloaded HTML file locally or visit your published GitHub Pages site.
 
-Every node should have a meaningful route from the declared start and onward to the declared goal. When a specialist skill is optional, connect its actual application or deliverable with a **dashed edge**. Do not invent a hard prerequisite just to make the diagram connected.
+### Open a custom tree
 
-### Relationship semantics
+Select **打开科技树 / Open tree** in the viewer and choose a compatible local JSON definition. You can create that definition manually or ask Codex to generate it using this repository's guides.
 
-| Relationship | Meaning | Locks a node? |
-|---|---|---|
-| Solid prerequisite edge | Knowledge genuinely required for the target node's stated scope | Yes, when assessing whether its direct prerequisites are ready |
-| Dashed development edge | A meaningful progression from an earlier capability into another area | No |
-| Dashed application edge | A capability can support a specific use, deliverable, or larger contribution | No |
-| Related-background link | Helpful context listed in the detail panel | No |
+The current viewer interface and bundled examples use Chinese. Documentation is provided in English and Chinese. Node content, titles, stages, and sources can use other languages; the `language` field is an HTML content-language hint, not an automatic interface translator.
 
-Multiple hard prerequisites mean **AND**. A set of dashed applications can describe alternatives; it does not mean all methods must be learned.
+## Features
 
-Progress is a self-assessment. You may mark familiar advanced knowledge directly without filling in every earlier record. The application does not automatically mark its prerequisites as completed, and undoing one self-assessment does not erase others.
+### Interactive map exploration
 
-The combined solid-and-dashed graph is intended to be acyclic, with a declared entry and goal. The representative-route action shows one route through the selected node; it is not a complete list of every prerequisite or a guarantee that following that one route is sufficient for a degree.
+- Drag the canvas to pan through a large tree.
+- Use the mouse wheel, zoom buttons, or the continuous slider to change scale.
+- Navigate with a minimap, stage buttons, branch filters, and node search.
+- Select a node to inspect its scope, outcome, prerequisites, applications, sources, and caveats.
+- Inspect a target's complete hard-prerequisite closure.
+- Display one representative route from the declared start through the selected node to the declared goal.
+
+The layout uses spaced horizontal columns and distributed connection points to give edges more room. Branch headings retain a minimum screen size in the overview and grow as the map is enlarged. Use the overview to understand structure, then zoom or search to read individual nodes.
+
+### Continuous zoom slider — new in 0.1.1
+
+The lower-left control includes a draggable slider covering **2.5%–240%** zoom. Its logarithmic scale makes both a whole-tree overview and close inspection accessible along one control.
+
+- Drag left to zoom out and right to zoom in.
+- The displayed percentage updates while dragging.
+- Wheel zoom, plus/minus buttons, double-click zoom, fit-to-view, and navigation update the same slider state.
+- Slider zoom is anchored at the center of the visible canvas.
+- With the slider focused, use arrow keys to adjust it or **Home / End** to reach its minimum or maximum.
+
+### Progress and learning evidence
+
+Mark capabilities as understood and add private notes about exercises, proofs, experiments, implementations, readings, or unresolved questions. Progress is a self-assessment: the application does not certify mastery or determine academic eligibility.
+
+Each tree has its own stable ID and browser-storage record. Export and restore progress separately from the public tree definition. Marking an advanced node does not automatically complete its prerequisites, and undoing one self-assessment does not erase other records.
+
+## Relationship semantics
+
+The graph distinguishes required foundations from optional learning and applications.
+
+| Relationship | Display | Meaning | Participates in prerequisite locking? |
+|---|---|---|---|
+| Hard prerequisite | Solid directed edge | Required knowledge for the target node's stated scope | Yes |
+| Learning development | Dashed directed edge | A meaningful continuation into another capability | No |
+| Application or contribution | Dashed directed edge | A capability can support a particular use or deliverable | No |
+| Related background | Link in the detail panel | Helpful context or supplementary knowledge | No |
+
+Multiple hard prerequisites mean **AND**. Several optional applications can represent alternative routes; they do not mean every method is compulsory.
+
+Every node should have a meaningful route from the tree's declared entry and onward to its goal. A specialist branch can end in a concrete contribution—a proof, design, analysis, measurement, implementation, or other work product—and connect that contribution to the larger outcome.
+
+Connections should express real educational or practical meaning. Do not invent a prerequisite merely to make the map connected. The combined solid-and-dashed graph must remain acyclic.
+
+The representative-route action shows **one route through a selected node**. It does not replace the full prerequisite closure or imply that this single route satisfies an institution's degree requirements.
+
+## Any subject, any academic path
+
+The viewer does not hard-code a discipline, institution, advisor, degree duration, or graduation year. The tree definition controls:
+
+- Subject and scope.
+- Entry knowledge and target outcome.
+- Stage names and stage count.
+- Branches and their colors.
+- Capability nodes and completion tasks.
+- Required, recommended, and application relationships.
+- Sources and the limits of their evidence.
+
+Stages may represent years, semesters, ability levels, research phases, or other milestones. The same format supports undergraduate-only, master's-only, doctoral, direct-doctoral, integrated graduate, multi-degree, part-time, and custom learning paths.
+
+[Degree-path profiles](templates/degree-paths.json) provide editable label suggestions. They do not prescribe formal course requirements, compulsory degree sequences, or fixed completion times. A separate master's degree is not automatically required in a doctoral tree.
+
+For a master's project, define a master's-appropriate endpoint. For a portfolio, define a portfolio outcome. For a doctorate, distinguish suggested research capabilities from the actual program's qualification, proposal, dissertation, defense, and degree procedures.
 
 ## Included computer-science doctoral example
 
-The bundled example contains **155 nodes across 14 branches**. It begins with general foundations and develops toward an original doctoral research contribution and the applicable formal completion process.
+The example contains **155 nodes across 14 branches**, developing from general foundations through undergraduate knowledge, optional master's-level research training, and doctoral research work.
 
-| Branch | Example topics |
+| Branch | Topics represented |
 |---|---|
-| General foundations | Reading, quantitative reasoning, observation, logic, and digital information |
+| General foundations | Reading, quantitative reasoning, logic, observation, and digital information |
 | Mathematics and statistics | Discrete mathematics, proofs, calculus, linear algebra, probability, statistics, and optimization |
 | Programming and research computing | Program structure, debugging, testing, version control, environments, and reproducibility |
-| Algorithms and data structures | Complexity, trees, graphs, dynamic programming, randomized methods, and approximation |
+| Algorithms and data structures | Complexity, search, trees, graphs, dynamic programming, randomized methods, and approximation |
 | Computer systems | Architecture, operating systems, concurrency, distributed systems, and storage |
-| Networks | Protocols, transport, routing, network measurement, and communication costs |
+| Networks | Protocols, transport, routing, measurement, and communication costs |
 | Data | Data models, queries, indexes, transactions, data quality, and information retrieval |
-| Theory and languages | Automata, computability, complexity, programming languages, and formal reasoning |
+| Theory and languages | Automata, computability, complexity, language semantics, and formal reasoning |
 | Security and privacy | Threat models, application protection, data minimization, and authorized evaluation |
-| Artificial intelligence | Statistical learning, evaluation, neural networks, and selected specialist directions |
-| Human–computer interaction | User needs, interaction, accessibility, usability, and participant research |
+| Artificial intelligence | Statistical learning, independent evaluation, and selected specialist methods |
+| Human–computer interaction | User needs, accessibility, usability, and participant research |
 | Graphics and visualization | Geometry, rendering, simulation, and scientific visualization |
 | Software engineering | Requirements, architecture, integration, maintenance, teamwork, and capstones |
-| Research and academic work | Literature, research questions, evidence, original contributions, communication, dissertation, and completion |
+| Research and academic work | Literature, questions, evidence, contributions, communication, dissertation, and formal completion |
 
-Specialist routes connect to concrete deliverables. They are not all compulsory for every doctoral researcher. The example permits different kinds of evidence, including theoretical arguments, systems measurements, data experiments, and human-participant studies.
+The example allows different forms of research evidence: theoretical arguments, systems measurements, data experiments, human-participant studies, and other appropriate analyses. Specialist branches connect to usable deliverables rather than becoming mandatory for every researcher.
 
-Its stages describe **capability and research phases**, not fixed years. Master's-level research training is included as an optional route; a separate master's degree is not treated as a universal prerequisite for doctoral study. Formal degree rules must come from the learner's actual institution and program.
+Its stages are capability and research phases, not fixed years. The map is independently authored educational material. It is not an institution-approved curriculum, a complete encyclopedia of computer science, or a guarantee of doctoral completion.
 
-This example demonstrates the format. It is not intended to become the template content for every other discipline.
+## Create your own tree with Codex
 
-## Ask Codex to create yours
-
-Replace `<REPOSITORY_URL>` with this repository's GitHub URL and send Codex:
+Replace `<REPOSITORY_URL>` with this repository's actual GitHub URL and send Codex the following prompt:
 
 ```text
 Use <REPOSITORY_URL> as the implementation reference for a Learning Tech Tree.
-Read AGENTS.md, docs/create-with-codex.md, docs/data-format.md and
-prompts/create-tree.md before creating data.
 
-Subject: [your subject or skill]
-Starting knowledge: [your current background]
-Target: [bachelor / master / doctorate / professional goal / other]
-Program and duration: [actual path, flexible phases, or unknown]
-Interests: [optional research or career directions]
-Language: [preferred language]
+First read:
+- AGENTS.md
+- docs/create-with-codex.md
+- docs/data-format.md
+- docs/customization.md
+- prompts/create-tree.md
 
-Generate a complete tree JSON and a standalone HTML using the repository's
-viewer. Include real prerequisites, optional applications, observable outcomes,
-sources, and a meaningful route from start to goal for every node.
-Do not add personal identities or private records to public files.
-State assumptions and distinguish educational design from official requirements.
+Subject or interdisciplinary goal: [fill in]
+Starting knowledge: [fill in]
+Target outcome: [bachelor / master / doctorate / professional goal / other]
+Actual academic path: [fill in, or use flexible capability phases]
+Duration and milestones: [fill in if known; do not assume fixed years]
+Interests or specialization: [fill in]
+Preferred language and depth: [fill in]
+Publication scope: [public generic example / private personalized tree]
+
+Create a rich, coherent tree with foundations, subject knowledge, appropriate
+methods, evidence production, communication, and practical milestones.
+
+For every node, include its scope, an observable completion task, genuine
+hard prerequisites, helpful background, caveats, and honest source scope.
+
+Every node must have a meaningful route from the declared start to the goal.
+Use solid edges for required prerequisites and dashed edges for optional
+development or applications. Do not make every specialization mandatory.
+Keep the combined graph acyclic.
+
+Adapt the content and stages to this request. Do not copy the computer-science
+example into another field or assume universal degree rules, publication
+quotas, or a separate master's degree.
+
+Keep private identities, notes, credentials, and local paths out of public files.
+State educational assumptions separately from formal institutional requirements.
+
+Deliver data/<new-stable-id>.json and examples/<new-stable-id>.html using the
+existing viewer. Perform checks only within the authorized scope and state
+which checks actually ran. Do not publish or push unless requested.
 ```
 
-A GitHub link is a reference, not a hosted AI service. Codex needs access to read or clone the repository. The viewer itself does not call Codex or any model. See [the full recipe](docs/create-with-codex.md).
+Codex needs access to read or clone the repository. A repository URL serves as a reference; the viewer itself does not call Codex or another model. No hosted AI generation service is included.
 
-### What Codex should produce
+The repository contains [English](prompts/create-tree.md) and [Chinese](prompts/create-tree.zh-CN.md) prompt templates, a [step-by-step recipe](docs/create-with-codex.md), and `AGENTS.md` guidance for coding agents. You may also author a tree manually without using an AI assistant.
 
-For a new subject, the expected deliverables are:
+## Data-driven customization
 
-1. A public or private tree definition, according to the requested publication scope.
-2. A standalone HTML page built with the existing generic viewer.
-3. Explicit assumptions about starting knowledge, stages, and the target outcome.
-4. Sources with clear distinctions between verified material and educational design.
-5. A statement of which structural, academic, or visual checks were actually performed.
+Public definitions use the **`learning-tech-tree/v1`** format. Start with [the minimal template](data/minimal-template.json), then edit the fields relevant to your journey.
 
-The repository includes English and Chinese [prompt templates](prompts/). `AGENTS.md` gives coding agents a concise set of project conventions; the longer authoring recipe lives in `docs/`.
+| Field | Purpose |
+|---|---|
+| `id` | Stable tree identity used to separate progress records |
+| `title`, `subtitle`, `description` | Public presentation of the journey |
+| `education` | Optional descriptive path, duration, and note |
+| `stages` | Any nonempty ordered list of stage labels |
+| `branches` | Subject-appropriate tracks, labels, and colors |
+| `nodes` | Capabilities, scope, outcomes, relationships, caveats, and source references |
+| `applicationEdges` | Directed non-gating development or application relationships with reasons |
+| `startId`, `endId` | Declared entry and target nodes |
 
-You can also create or edit a definition manually. Codex is an optional authoring aid, not a requirement for using the viewer.
+Each node uses a zero-based stage index. Stages and branches must exist in the same definition. The current viewer supports **2–2500 nodes per tree**.
 
-## Edit and build
+Keep tree and node IDs stable when retaining their meaning across revisions so progress can continue to match. Use a different tree ID for an unrelated learning journey. Personal notes and completion records belong in progress backups, not public curriculum data.
 
-Node.js 20 or newer is needed only for the authoring scripts. There are no npm dependencies and no installation step.
+See [the data-format guide](docs/data-format.md) and [JSON Schema](schema/tree.schema.json) for the complete structure.
+
+## Build and structural validation
+
+**Node.js 20 or newer** is needed only for the authoring scripts. The project has no npm dependencies and requires no installation step to build the bundled pages.
 
 ```sh
-# Check bundled or custom definitions; this checks structure, not academic truth.
+# Validate the bundled public definitions.
 node scripts/validate.mjs
+
+# Validate one custom definition.
 node scripts/validate.mjs data/my-tree.json
 
-# Regenerate the included standalone pages.
+# Regenerate the bundled standalone pages.
 node scripts/build.mjs
 
-# Build your own standalone page.
+# Build a standalone page for a custom tree.
 node scripts/build.mjs data/my-tree.json examples/my-tree.html
 ```
 
-The browser's **打开科技树 / Open tree** action can load a valid JSON without rebuilding the repository. See [the schema](schema/tree.schema.json) and [data-format guide](docs/data-format.md).
+The builder normally validates the definition before generating HTML. The validator checks IDs, references, stage bounds, source references, cycles in the combined graph, and start/end connectivity.
 
-### What to change for a new tree
+Structural validation does not establish academic accuracy, completeness, appropriate research methods, accessibility, or eligibility for a degree. Review those matters separately and state what was actually reviewed.
 
-| Field | What you customize |
-|---|---|
-| `id` | A stable identity for this tree and its progress records |
-| `title`, `subtitle`, `description` | The public explanation of the learning journey |
-| `education` | Optional description of the actual program or custom path |
-| `stages` | Any number of relevant phase, semester, year, or milestone labels |
-| `branches` | Subject-appropriate tracks and their colors |
-| `nodes` | Capabilities, outcomes, prerequisites, related background, sources, and caveats |
-| `applicationEdges` | Non-gating development and application connections with reasons |
-| `startId`, `endId` | The declared entry and target outcome |
+If checks are explicitly declined, the builder provides `--skip-validation`; the resulting delivery should disclose that limit. Opening a custom JSON in the browser still applies the viewer's structural input validation before replacing the active tree.
 
-Keep IDs stable when revising an existing tree so the browser can match prior progress. Use a new tree ID for an unrelated learning journey. Do not add personal learning notes or completion records to public definition files.
+## Publish with GitHub Pages
 
-The current viewer accepts **2–2500 nodes per tree**. Its validator checks IDs, references, stage bounds, evidence references, cycles in the combined graph, and start/end connectivity. These are structural checks; they do not establish that a subject's prerequisites are academically correct.
+The generated `index.html` is included in the repository. To publish the supplied viewer:
 
-## Publish to GitHub Pages
+1. Upload or commit the project files with **`index.html` at the repository root**.
+2. Include the `src`, `data`, `examples`, `docs`, `prompts`, `schema`, `scripts`, and `templates` directories, along with the root project files.
+3. In GitHub, open **Settings → Pages**.
+4. Choose **Deploy from a branch**, select the intended branch and **`/ (root)`**, and save.
+5. Use the actual site URL reported by GitHub after deployment.
 
-The generated `index.html` is already included. Upload the **contents of this repository directory**, with `index.html` at the repository root. In the repository's **Settings → Pages**, choose deployment from a branch, select the intended branch and `/ (root)`, then save. No build workflow is required for these standalone files. [GitHub Pages documentation](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site)
+The bundled standalone pages need no build workflow to be served. Rebuild generated HTML after changing viewer source or bundled data. See [the publishing guide](docs/publish.md) and [official GitHub Pages documentation](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site).
 
-Use the literal URL reported by GitHub after deployment. This package has not created a repository or deployed a site on your behalf.
+## Privacy and local storage
 
-If opening `index.html` on the GitHub repository page shows source code, that is expected: the repository file view is not the running website. Use a local downloaded HTML file or the published GitHub Pages URL.
+The public examples are independently authored, non-personal educational material. They do not include an actual learner's identity, advisor, private academic history, notes, progress, credentials, or machine-specific paths.
 
-## Privacy, scope and verification status
+- Tree JSON is embedded in the page or read from a local file you select.
+- The application has no backend, account system, telemetry code, or model API call.
+- Progress and notes are saved in the current browser, separately for each tree ID.
+- Exporting a tree definition is separate from exporting private progress.
+- The application does not upload notes or progress to GitHub.
 
-Public examples are independently authored educational material. No personal learning history, progress, notes, credentials or machine-specific paths are bundled. JSON is read locally, and the application does not send tree contents or notes to a backend. Browser storage is local to the current browser profile and origin; it is not encrypted or an automatic cross-device backup. External source links and the hosting provider have their own privacy behavior. [Privacy details](docs/privacy.md)
+Browser storage is not encrypted or an automatic backup. Other software or pages sharing the same origin may be able to access it. Clearing data, changing browser profiles, moving to another device, or switching between local and hosted origins can affect access to saved progress. Export a backup before making these changes.
 
-Curriculum edges are educational judgments. Graph validation does **not** prove academic prerequisite accuracy, completeness, research suitability or eligibility for a degree. Specific institutions and programs define their own requirements. [Evidence and limitations](docs/evidence.md)
-
-**Initial release status:** the supplied static pages have been generated, but automated validation, tests, and browser QA have not yet been run for this release. The scripts are available for maintainers to use. No successful-validation or visual-verification claim is made. [Release notes](docs/release-notes.md)
+External source links and hosting providers have their own privacy and logging behavior. Do not place credentials, confidential research, or other sensitive information in learning notes. Keep progress backups out of public repositories. See [privacy.md](docs/privacy.md).
 
 ## Frequently asked questions
 
-### Is this limited to computer science?
+### Is the project limited to computer science or doctoral study?
 
-No. Computer science is the included example, not a restriction in the viewer. Other sciences, engineering, humanities, arts, professional skills, and interdisciplinary goals can use the same format. Their content and methods must be authored for the field.
+No. Both the subject and academic path are defined by data. Use an appropriate entry, stages, methods, and endpoint for the actual request.
 
-### Can I make a master's-only or undergraduate-only tree?
+### Can I start from my current knowledge instead of early education?
 
-Yes. Set the stages, content, and endpoint to that actual goal. Do not leave doctoral milestones in a master's tree unless they genuinely belong to the requested path.
+Yes. Define the starting point around the learner's existing background. A tree does not need to reproduce every previous year of schooling.
 
-### Does the application generate a curriculum automatically?
+### Must I complete all specialist branches?
 
-No. It displays and manages a supplied definition. Codex or another author can create the definition using the repository's guides and schema. The application contains no built-in model call or automatic academic verification.
+No. Optional branches can describe alternatives. Dashed application edges show how selected capabilities can contribute without making all methods prerequisites for the goal.
 
-### Does completing a tree mean I qualify for a degree?
+### Does marking a node prove mastery or satisfy a degree requirement?
 
-No. The tree records self-assessed capabilities and suggested routes. Institutions, examination boards, supervisors, and professional bodies define their own formal requirements.
+No. Progress is a personal record. Observable outcomes help make self-assessment concrete, while formal certification and degree decisions remain with the relevant institution or body.
 
-### Are my notes uploaded to GitHub?
+### Will notes and progress synchronize between devices?
 
-The application does not upload them. They remain in the current browser unless you export or share them yourself. Keep progress backups out of public repositories.
+Not automatically. Export a progress backup and restore it for the matching tree. The tree ID must match, and the browser filters entries using the current node IDs.
 
-### Will progress follow me to another browser or device?
+### Do I need Node.js or an API subscription to use the viewer?
 
-Not automatically. Export a progress backup and restore it for the matching tree. Browser storage is scoped to the browser profile and origin, so a local file and a hosted page may not share it.
+No. Open an included HTML file or load compatible JSON in the viewer. Node.js is for the optional authoring scripts; using an external AI assistant is a separate choice.
 
-### Can I use the project without Node.js?
+### Can I use English or another language for a tree?
 
-Yes. Open the included HTML, or open a compatible JSON through the viewer. Node.js is only needed for the optional build and structural-validation scripts.
+Yes. Public labels and text accept Unicode. The current fixed viewer interface is Chinese; full interface localization has not been implemented.
 
-### Can I revise or extend the example?
+## Repository structure
 
-Yes, under the project's license. Keep node IDs stable when retaining their meaning, explain changed assumptions, and distinguish real prerequisites from optional background and applications.
+```text
+learning-tech-tree/
+├── index.html                  Standalone viewer with the CS example
+├── AGENTS.md                   Repository guidance for coding agents
+├── README.md                   Project overview and usage
+├── LICENSE                     MIT license
+├── package.json                Optional authoring-script commands
+├── src/                        Generic viewer source and graph engine
+├── data/                       Public tree definitions
+├── examples/                   Generated standalone example pages
+├── templates/                  Editable degree-path stage profiles
+├── schema/                     Tree JSON Schema
+├── scripts/                    Build and structural-validation utilities
+├── docs/                       Authoring, customization, evidence, privacy, release notes
+└── prompts/                    Copyable English and Chinese Codex prompts
+```
+
+## Evidence, limitations, and release status
+
+Fine-grained curriculum relationships are educational judgments, even when the underlying topics have authoritative sources. A source may support a concept without establishing every prerequisite edge. Document what was actually read and avoid presenting an independent map as an institution-approved program.
+
+The bundled example's public references and evidence boundaries are described in [evidence.md](docs/evidence.md).
+
+**Version 0.1.1 includes regenerated static pages with the continuous zoom slider. Automated validation, a test suite, and browser QA were not run for this delivery. No successful-validation or visual-verification claim is made.** Maintainers can use the supplied commands and perform appropriate academic and usability review before relying on a modified tree.
 
 ## Contributing
 
-Contributions can improve the viewer, accessibility, documentation, sources, or subject examples. For a curriculum correction, identify the tree and node IDs, explain the relation that should change, and provide an appropriate primary source or a narrower learning scope.
+Contributions can improve subject examples, relationship accuracy, source evidence, documentation, accessibility, or the viewer itself.
 
-Please keep examples non-personal, avoid copying copyrighted course material, and do not present an independently authored map as an institution-approved plan. See [CONTRIBUTING.md](CONTRIBUTING.md).
+For a proposed curriculum correction, identify the relevant node IDs, explain the relationship that should change, and provide a suitable primary source or a narrower scope for the target capability. Keep optional applications separate from required foundations.
 
-## Repository map
-
-```text
-index.html                      ready-to-open viewer + CS example
-src/                            independently authored viewer and graph engine
-data/                           public tree definitions only
-examples/                       generated standalone examples
-templates/                      degree-stage profiles
-schema/                         documented JSON Schema
-scripts/                        dependency-free build and structural validation
-docs/                           authoring, privacy, evidence and publishing guides
-prompts/                        copyable Codex instructions
-AGENTS.md                       repository guidance for coding agents
-```
+Use non-personal public examples, respect third-party rights, and preserve stable IDs when their meaning is retained. See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## License and acknowledgments
 
-Project code and original example content are provided under the [MIT License](LICENSE). Source links retain their respective rights; this repository does not relicense linked papers, standards or websites.
+Project code and original example content are available under the **[MIT License](LICENSE)**. Linked papers, standards, websites, and other third-party materials retain their respective rights.
 
-Inspired by game technology trees and the idea of mapping learning dependencies. The interface and engine in this repository are independently authored; no third-party skill-tree implementation is bundled. Educational source references are listed inside the example and in [evidence.md](docs/evidence.md).
+The project draws inspiration from game technology trees, including *Dyson Sphere Program* and *Factorio*. It is an independent educational project, without affiliation with or endorsement by the games' developers. Game names and assets retain their respective ownership.
+
+The viewer and graph engine are independently authored. No third-party skill-tree implementation is bundled.
